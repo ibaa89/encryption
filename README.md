@@ -1,2 +1,2 @@
 # encryption
-encrypt and decrypt your file using a password
+encrypt and decrypt your files using a password
