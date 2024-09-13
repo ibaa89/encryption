@@ -59,18 +59,22 @@
         - "3306:3306"
       environment:
         MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-root_password}
-        MYSQL_DATABASE: example
-        MYSQL_USER: ${DB_USER:-db_user}
-        MYSQL_PASSWORD: ${DB_PASSWORD:-db_password}
+        MYSQL_DATABASE: ${DB_NAME:-app_db}
+        MYSQL_USER: ${DB_USER:-admin}
+        MYSQL_PASSWORD: ${DB_PASSWORD:-222222}
+      networks:
+        - fullstack
 
     phpmyadmin:
       image: phpmyadmin/phpmyadmin
       depends_on:
         - mariadb
+      ports: 
+        - "8082:80"
       environment:
         - PMA_ARBITRARY=1
-        - MYSQL_USER=${DB_USER:-db_user}
-        - MYSQL_PASSWORD=${DB_PASSWORD:-db_password}
+        - MYSQL_USER=${DB_USER:-admin}
+        - MYSQL_PASSWORD=${DB_PASSWORD:-222222}
         - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD:-root_password}
         - UPLOAD_LIMIT=64M
       networks:
