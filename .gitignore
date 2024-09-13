@@ -1,0 +1,7 @@
+#ignore the vs code auto generator
+.vscode/
+UBAA.TXT
+
+
+#ignore the testing file becasue it is not fully written
+testing/
