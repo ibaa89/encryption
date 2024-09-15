@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-return  [
+return [
     'database' => [
         'driver' => 'mysql',
         'username' => getenv('MYSQL_USER') ?: 'root',

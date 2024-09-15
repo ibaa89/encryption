@@ -7,15 +7,22 @@ RUN docker-php-ext-install pdo pdo_mysql mysqli
 RUN apk add --no-cache libzip-dev \
     && docker-php-ext-configure zip \
     && docker-php-ext-install zip
+
+    
 # Install dependencies for PHP extensions
 RUN apk add --no-cache $PHPIZE_DEPS \
     && apk add --no-cache libpng-dev libjpeg-turbo-dev freetype-dev \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install gd
+
 # Install Xdebug dependencies and Xdebug
 # RUN apk add --no-cache $PHPIZE_DEPS \
 #     && pecl install xdebug-3.1.5 \
 #     && docker-php-ext-enable xdebug
+RUN apk add --no-cache $PHPIZE_DEPS \
+    && pecl channel-update pecl.php.net \
+    && pecl install swoole \
+    && docker-php-ext-enable swoole
 
 # Set the working directory environment variable
 ENV WORK_DIR /var/www/application
@@ -27,6 +34,7 @@ ENTRYPOINT ["docker-php-entrypoint"]
 FROM base
 #  Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+
 
 # Set the working directory
 WORKDIR ${WORK_DIR}

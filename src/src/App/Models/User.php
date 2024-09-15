@@ -11,7 +11,13 @@ class User extends Model
     protected $fillable = [
         'username',
         'password',
+        'email',
     ];
+    
+    public function tokens()
+    {
+        return $this->hasMany(Token::class, 'user_id');
+    }
 
     public function accountPasswords()
     {

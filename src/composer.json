@@ -48,7 +48,8 @@
         "php": "~8.1.0 || ~8.2.0 || ~8.3.0",
         "composer/package-versions-deprecated": "^1.10.99",
         "davedevelopment/phpmig": "^1.7",
-        "illuminate/database": "^10.48",
+        "firebase/php-jwt": "^6.10",
+        "illuminate/database": "*",
         "laminas/laminas-component-installer": "^2.6 || ^3.0",
         "laminas/laminas-config-aggregator": "^1.6",
         "laminas/laminas-diactoros": "^3.0.0",
@@ -57,6 +58,7 @@
         "mezzio/mezzio": "^3.7",
         "mezzio/mezzio-fastroute": "^3.11.0",
         "mezzio/mezzio-helpers": "^5.7",
+        "mezzio/mezzio-swoole": "^4.9",
         "pimple/pimple": "^3.5",
         "symfony/console": "^5.0"
     },
@@ -87,6 +89,8 @@
         ],
         "post-install-cmd": "@clear-config-cache",
         "post-update-cmd": "@clear-config-cache",
+
+        "clear-config-cache": "php bin/clear-config-cache.php",
         "development-disable": "laminas-development-mode disable",
         "development-enable": "laminas-development-mode enable",
         "development-status": "laminas-development-mode status",
@@ -95,7 +99,6 @@
             "@cs-check",
             "@test"
         ],
-        "clear-config-cache": "php bin/clear-config-cache.php",
         "enable-codestandard": "Dealerdirect\\Composer\\Plugin\\Installers\\PHPCodeSniffer\\Plugin::run",
         "cs-check": "phpcs",
         "cs-fix": "phpcbf",
